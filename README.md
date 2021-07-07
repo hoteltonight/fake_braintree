@@ -61,10 +61,6 @@ of them (yet).
 * `Braintree::Transaction.void`
 * `Braintree::Transaction.submit_for_settlement`
 
-### TransparentRedirect
-* `Braintree::TransparentRedirect.confirm` (only for creating customers)
-* `Braintree::TransparentRedirect.url`
-
 ### Javascript SDK
 * `braintree.setup()`
 * `braintree.api.Client.prototype.tokenizeCard()`

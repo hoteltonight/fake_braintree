@@ -3,6 +3,7 @@
 <head>
   <meta charset='utf-8'>
   <script src='braintree.js'></script>
+  <script src='dropin.js'></script>
   <script src='jquery-2.1.0.js'></script>
 </head>
 <body>
@@ -14,7 +15,10 @@
   <script>
     jQuery(function() {
       var token = <%= @token.to_json %>;
-      braintree.setup(token, 'dropin', {container: 'checkout'});
+      braintree.dropin.create({
+        authorization: token,
+        containere: '#checkout'
+      });
     });
   </script>
 </body>

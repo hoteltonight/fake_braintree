@@ -17,7 +17,11 @@ module FakeBraintree
     end
 
     def customer
-      FakeBraintree.registry.customers[@address['customer_id']]
+      return @customer if defined?(@customer)
+
+      @customer = FakeBraintree.registry.customers[@address['customer_id']]
+      @customer['addresses'] ||= []
+      @customer
     end
 
     def response_for_updated_address

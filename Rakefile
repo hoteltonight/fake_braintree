@@ -8,6 +8,10 @@ require 'yaml'
 
 RSpec::Core::RakeTask.new(:spec)
 
+def download(origin, target)
+  sh "curl #{origin} -o #{target}"
+end
+
 desc 'Run specs'
 task default: [:spec]
 
@@ -18,15 +22,21 @@ desc 'Update braintree client'
 task :update_braintree do
   puts 'Downloading braintree.js'
 
-  origin = 'https://js.braintreegateway.com/v2/braintree.js'
-  target = 'spec/dummy/public/braintree.js'
-  sh "curl #{origin} -o #{target}"
+  download(
+    'https://js.braintreegateway.com/web/3.78.3/js/client.min.js',
+    'spec/dummy/public/braintree.js'
+  )
+
+  download(
+    "https://js.braintreegateway.com/web/dropin/1.30.1/js/dropin.min.js",
+    "spec/dummy/public/dropin.js"
+  )
 end
 
 desc 'Update braintree drop-in assets'
 task :update_dropin do
   puts 'Determining drop-in version from client code'
-  uri = URI('https://js.braintreegateway.com/v2/braintree.js')
+  uri = URI('https://js.braintreegateway.com/web/3.78.3/js/client.min.js')
   js_client = Net::HTTP.get(uri)
   session = Capybara::Session.new(:apparition, ->{})
   session.execute_script(js_client)

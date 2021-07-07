@@ -18,7 +18,7 @@ describe FakeBraintree::SinatraApp do
       ).transaction
 
       creation_time = Time.parse(transaction.created_at)
-      expect(creation_time).to be_within(1).of(Time.now)
+      expect(creation_time.change(usec: 0)).to be_within(1).of(Time.now.change(usec: 0))
     end
 
     context 'when all cards are declined' do
@@ -92,7 +92,7 @@ describe FakeBraintree::SinatraApp do
       transaction = Braintree::Transaction.refund(create_id('foobar'), '1').transaction
 
       creation_time = Time.parse(transaction.created_at)
-      expect(creation_time).to be_within(1).of(Time.now)
+      expect(creation_time.change(usec: 0)).to be_within(1).of(Time.now.change(usec: 0))
     end
   end
 end

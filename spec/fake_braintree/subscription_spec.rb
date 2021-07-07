@@ -57,7 +57,7 @@ describe 'Braintree::Subscription.create' do
 
   it 'sets the next billing date to a string of 1.month.from_now in UTC' do
     Timecop.freeze do
-      expect(create_subscription.subscription.next_billing_date).to eq 1.month.from_now.strftime('%Y-%m-%d')
+      expect(create_subscription.subscription.next_billing_date.to_s).to eq 1.month.from_now.strftime('%Y-%m-%d')
     end
   end
 
@@ -78,13 +78,13 @@ describe 'Braintree::Subscription.create' do
       Timecop.freeze(Date.new(2014, 8, 25), &example)
     end
     it 'sets billing_period_start_date to today' do
-      expect(create_subscription.subscription.billing_period_start_date).to eq "2014-08-25"
+      expect(create_subscription.subscription.billing_period_start_date.to_s).to eq "2014-08-25"
     end
     it 'sets next_billing_date to one month from now' do
-      expect(create_subscription.subscription.next_billing_date).to eq "2014-09-25"
+      expect(create_subscription.subscription.next_billing_date.to_s).to eq "2014-09-25"
     end
     it 'sets billing_period_end_date to one day before next_billing_date' do
-      expect(create_subscription.subscription.billing_period_end_date).to eq "2014-09-24"
+      expect(create_subscription.subscription.billing_period_end_date.to_s).to eq "2014-09-24"
     end
   end
 
@@ -138,7 +138,7 @@ describe 'Braintree::Subscription.find' do
 
   it 'returns discounts added with the subscription' do
     discount_id = 'abc123'
-    amount = BigDecimal.new('15.00')
+    amount = BigDecimal('15.00')
     subscription_id = create_subscription(discounts: { add: [{ inherited_from_id: discount_id, amount: amount }]}).subscription.id
     subscription = Braintree::Subscription.find(subscription_id)
     discounts = subscription.discounts

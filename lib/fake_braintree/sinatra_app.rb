@@ -280,23 +280,6 @@ module FakeBraintree
       gzipped_response(200, transaction_response.to_xml(root: 'transaction'))
     end
 
-    # Braintree::TransparentRedirect.url
-    post '/merchants/:merchant_id/transparent_redirect_requests' do
-      if params[:tr_data]
-        redirect = Redirect.new(params, params[:merchant_id])
-        FakeBraintree.registry.redirects[redirect.id] = redirect
-        redirect to(redirect.url), 303
-      else
-        [422, { 'Content-Type' => 'text/html' }, ['Invalid submission']]
-      end
-    end
-
-    # Braintree::TransparentRedirect.confirm
-    post '/merchants/:merchant_id/transparent_redirect_requests/:id/confirm' do
-      redirect = FakeBraintree.registry.redirects[params[:id]]
-      redirect.confirm
-    end
-
     # Braintree::ClientToken.generate
     post '/merchants/:merchant_id/client_token' do
       client_token_hash = hash_from_request_body_with_key('client_token')

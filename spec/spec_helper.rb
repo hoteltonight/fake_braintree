@@ -13,7 +13,6 @@ Dir[File.join(File.dirname(__FILE__), 'support/**/*.rb')].each {|f| require f}
 TEST_CC_NUMBER = %w(4111 1111 1111 1111).join
 
 Capybara.app = CheckoutApp
-Capybara.server = :puma
 Capybara.javascript_driver = :apparition
 
 RSpec.configure do |config|
