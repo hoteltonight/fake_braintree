@@ -15,10 +15,10 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
-  s.required_ruby_version = Gem::Requirement.new(">= 2.6.0")
+  s.required_ruby_version = Gem::Requirement.new(">= 3.1.0")
 
   s.add_dependency 'activesupport', '>= 5.0.0'
-  s.add_dependency 'braintree', '~> 4.2.0'
+  s.add_dependency 'braintree', '~> 4.26.0'
   s.add_dependency 'capybara', '>= 3.33.0'
   s.add_dependency 'sinatra'
   s.add_dependency 'puma'
