@@ -23,12 +23,12 @@ task :update_braintree do
   puts 'Downloading braintree.js'
 
   download(
-    'https://js.braintreegateway.com/web/3.78.3/js/client.min.js',
+    'https://js.braintreegateway.com/web/3.115.1/js/client.min.js',
     'spec/dummy/public/braintree.js'
   )
 
   download(
-    "https://js.braintreegateway.com/web/dropin/1.30.1/js/dropin.min.js",
+    "https://js.braintreegateway.com/web/dropin/1.44.1/js/dropin.min.js",
     "spec/dummy/public/dropin.js"
   )
 end
