@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
   s.required_ruby_version = Gem::Requirement.new(">= 3.1.0")
 
-  s.add_dependency 'activesupport', '~> 6.1.7'
+  s.add_dependency 'activesupport', '~> 7.0.8.7'
   s.add_dependency 'braintree', '~> 4.26.0'
   s.add_dependency 'capybara', '>= 3.33.0'
   s.add_dependency 'sinatra', '~> 3.0.5'
